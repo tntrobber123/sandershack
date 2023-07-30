@@ -56,8 +56,7 @@ class PickupAction(Action):
                 return
 
         raise exceptions.Impossible("There is nothing here to pick up.")
-
-
+        
 class ItemAction(Action):
     def __init__(
         self, entity: Actor, item: Item, target_xy: Optional[Tuple[int, int]] = None
@@ -78,7 +77,12 @@ class ItemAction(Action):
         if self.item.consumable:
             self.item.consumable.activate(self)
 
-
+class FireAction(ItemAction):
+    """Fire a clip from inventory in a specified direction, if a clip is in inventory"""
+    def perform(self) -> None:
+        
+        self.entity.inventory.fire(self.x, self.y, self.item)
+            
 class DropItem(ItemAction):
     def perform(self) -> None:
         if self.entity.equipment.item_is_equipped(self.item):

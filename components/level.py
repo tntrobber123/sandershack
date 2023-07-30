@@ -22,6 +22,7 @@ class Level(BaseComponent):
         level_up_factor: int = 150,
         xp_given: int = 0,
         xp_mod: int = 1#equippable.amulet.equippable.xp_mod,
+        #clips: int = 50
     ):
         self.current_level = current_level
         self.current_xp = current_xp
@@ -29,6 +30,7 @@ class Level(BaseComponent):
         self.level_up_factor = level_up_factor
         self.xp_given = xp_given
         self.xp_mod = xp_mod#EquipmentType.amulet.equippable.xp_mod
+        #self.clips = clips
 
     @property
     def experience_to_next_level(self) -> int:

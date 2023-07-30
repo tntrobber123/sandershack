@@ -12,6 +12,7 @@ from actions import (
     BumpAction,
     PickupAction,
     WaitAction,
+    FireAction
 )
 import color
 import exceptions
@@ -395,8 +396,16 @@ class InventoryDropHandler(InventoryEventHandler):
     def on_item_selected(self, item: Item) -> Optional[ActionOrHandler]:
         """Drop this item."""
         return actions.DropItem(self.engine.player, item)
-
-
+    
+class InventoryFireHandler(InventoryEventHandler):
+    """Handle firing an inventory item."""
+    
+    TITLE = "Select an item to fire"
+    
+    def on_tiem_selected(self, item: Item) -> Optional[ActionOrHandler]:
+        """Shoot this item."""
+        return actions.FireItem(self.engine.player, item)
+    
 class SelectIndexHandler(AskUserEventHandler):
     """Handles asking the user for an index on the map."""
 
@@ -544,6 +553,9 @@ class MainGameEventHandler(EventHandler):
             return CharacterScreenEventHandler(self.engine)
         elif key == tcod.event.K_SEMICOLON:
             return LookHandler(self.engine)
+        
+        elif key == tcod.event.K_f:
+            return InventoryFireHandler(self.engine)
 
         # No valid key was pressed
         return action

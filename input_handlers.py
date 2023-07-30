@@ -51,6 +51,10 @@ CONFIRM_KEYS = {
     tcod.event.K_PERIOD
 }
 
+ACTION_KEYS = {
+    tcod.event.K_f
+}
+
 ActionOrHandler = Union[Action, "BaseEventHandler"]
 """An event handler return value which can trigger an action or switch active handlers.
 
@@ -538,7 +542,7 @@ class MainGameEventHandler(EventHandler):
             return InventoryDropHandler(self.engine)
         elif key == tcod.event.K_c:
             return CharacterScreenEventHandler(self.engine)
-        elif key == tcod.event.K_SLASH:
+        elif key == tcod.event.K_SEMICOLON:
             return LookHandler(self.engine)
 
         # No valid key was pressed

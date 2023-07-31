@@ -72,7 +72,11 @@ lightning_shocker = Item(
     consumable=consumable.LightningDamageConsumable(damage=20, maximum_range=5),
 )
 
-small_knife = Item(char="/", color=(0, 180, 255), name="Small Knife", equippable=equippable.SmallKnife()
+small_knife = Item(
+    char="/",
+    color=(0, 180, 255),
+    name="Small Knife",
+    equippable=equippable.SmallKnife()
 )
 
 knife = Item(
@@ -136,4 +140,11 @@ green_armor_chip = Item(
     color=(95, 255, 0),
     name="Green Armor Chip",
     equippable=equippable.GreenChip()
+)
+
+clip = Item(
+    char="*",
+    color=(212, 175, 55),
+    name="Clip",
+    consumable=consumable.BulletConsumable(damage=20)
 )

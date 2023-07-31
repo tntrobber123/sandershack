@@ -76,6 +76,34 @@ class ConfusionConsumable(Consumable):
         )
         self.consume()
 
+class BulletConsumable(Consumable):
+    def __init__(self, damage: int):
+        self.damage = damage
+
+    def get_action(self, consumer: Actor) -> SingleRangedAttackHandler:
+        self.engine.message_log.add_message(
+            "Select a target.", color.needs_target
+        )
+        return SingleRangedAttackHandler(
+            self.engine,
+            callback=lambda xy: actions.ItemAction(consumer, self.parent, xy),
+        )
+
+    def activate(self, action: actions.ItemAction) -> None:
+        consumer = action.entity
+        target = action.target_actor
+
+        if not self.engine.game_map.visible[action.target_xy]:
+            raise Impossible("You cannot target an area that you cannot see.")
+        if target is consumer:
+            raise Impossible("You cannot shoot yourself!")
+
+        self.engine.message_log.add_message(
+            f"you hit the {target.name} dealing {self.damage} damage!",
+            color.status_effect_applied,
+        )
+        target.fighter.take_damage(self.damage)
+        self.consume()
 
 class FireballDamageConsumable(Consumable):
     def __init__(self, damage: int, radius: int):

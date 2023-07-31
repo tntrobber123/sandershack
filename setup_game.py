@@ -51,9 +51,12 @@ def new_game() -> Engine:
     
     leather_armor = copy.deepcopy(entity_factories.leather_armor)
     leather_armor.parent = player.inventory
-
     player.inventory.items.append(leather_armor)
     player.equipment.toggle_equip(leather_armor, add_message=False)
+    
+    clip = copy.deepcopy(entity_factories.clip)
+    clip.parent = player.inventory
+    player.inventory.items.append(clip)
     
     return engine
 

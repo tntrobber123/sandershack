@@ -57,6 +57,9 @@ def new_game() -> Engine:
     clip = copy.deepcopy(entity_factories.clip)
     clip.parent = player.inventory
     player.inventory.items.append(clip)
+    player.inventory.items.append(clip)
+    player.inventory.items.append(clip)
+    player.inventory.items.append(clip)
     
     return engine
 

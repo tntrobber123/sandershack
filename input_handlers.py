@@ -397,15 +397,6 @@ class InventoryDropHandler(InventoryEventHandler):
         """Drop this item."""
         return actions.DropItem(self.engine.player, item)
     
-class InventoryFireHandler(InventoryEventHandler):
-    """Handle firing an inventory item."""
-    
-    TITLE = "Select an item to fire"
-    
-    def on_tiem_selected(self, item: Item) -> Optional[ActionOrHandler]:
-        """Shoot this item."""
-        return actions.FireItem(self.engine.player, item)
-    
 class SelectIndexHandler(AskUserEventHandler):
     """Handles asking the user for an index on the map."""
 
@@ -482,6 +473,20 @@ class SingleRangedAttackHandler(SelectIndexHandler):
     def on_index_selected(self, x: int, y: int) -> Optional[Action]:
         return self.callback((x, y))
 
+class InventoryFireHandler(SelectIndexHandler):
+    """Handle firing an inventory item."""
+    
+    TITLE = "Select an item to fire"
+    
+    def __init__(
+        self, engine: Engine, callback: Callable[[Tuple[int, int]], Optional[Action]]
+    ):
+        super().__init__(engine)
+
+        self.callback = callback
+
+    def on_index_selected(self, x: int, y: int) -> Optional[Action]:
+        return self.callback((x, y))
 
 class AreaRangedAttackHandler(SelectIndexHandler):
     """Handles targeting an area within a given radius. Any entity within the area will be affected."""

@@ -146,5 +146,5 @@ clip = Item(
     char="*",
     color=(212, 175, 55),
     name="Clip",
-    consumable=consumable.BulletConsumable(damage=20)
+    consumable=consumable.BulletConsumable(damage=50)
 )

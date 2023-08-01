@@ -79,9 +79,11 @@ class ItemAction(Action):
 
 class FireAction(ItemAction):
     """Fire a clip from inventory in a specified direction, if a clip is in inventory"""
-    def perform(self) -> None:
+    def perform(self):
         
         self.entity.inventory.fire(self.x, self.y, self.item)
+        return actions.DropItem(target_xy, self.item)
+        print("i work!")
             
 class DropItem(ItemAction):
     def perform(self) -> None:

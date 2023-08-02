@@ -40,7 +40,7 @@ class MessageLog:
             self.messages.append(Message(text, fg))
 
     def render(
-        self, console: tcod.Console, x: int, y: int, width: int, height: int,
+        self, console: tcod.console.Console, x: int, y: int, width: int, height: int,
     ) -> None:
         """Render this log over the given area.
 
@@ -60,7 +60,7 @@ class MessageLog:
     @classmethod
     def render_messages(
         cls,
-        console: tcod.Console,
+        console: tcod.console.Console,
         x: int,
         y: int,
         width: int,

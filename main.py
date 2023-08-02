@@ -33,7 +33,7 @@ def main() -> None:
         title="SandersHack",
         vsync=True,
     ) as context:
-        root_console = tcod.Console(screen_width, screen_height, order="F")
+        root_console = tcod.console.Console(screen_width, screen_height, order="F")
         try:
             while True:
                 root_console.clear()

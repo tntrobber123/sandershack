@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from components.ai import BaseAI
     from components.consumable import Consumable
     from components.eq import Equipment
-    from components.equippable import Eqable
     from components.fighter import Fighter
     from components.inventory import Inventory
     from components.level import Level
@@ -31,6 +30,7 @@ class Entity:
         parent: Optional[GameMap] = None,
         x: int = 0,
         y: int = 0,
+		quantity: int = 0,
         char: str = "?",
         color: Tuple[int, int, int] = (255, 255, 255),
         name: str = "<Unnamed>",
@@ -39,6 +39,7 @@ class Entity:
     ):
         self.x = x
         self.y = y
+        self.quantity = quantity
         self.char = char
         self.color = color
         self.name = name
@@ -137,15 +138,18 @@ class Item(Entity):
         x: int = 0,
         y: int = 0,
         char: str = "?",
+        quantity: int = 0,
         color: Tuple[int, int, int] = (255, 255, 255),
         name: str = "<Unnamed>",
         consumable: Optional[Consumable] = None,
         equippable: Optional[Equippable] = None,
+        stackable: Optional[stackable] = None,
     ):
         super().__init__(
             x=x,
             y=y,
             char=char,
+            quantity=quantity,
             color=color,
             name=name,
             blocks_movement=False,
@@ -153,6 +157,7 @@ class Item(Entity):
         )
 
         self.consumable = consumable
+        
         if self.consumable:
             self.consumable.parent = self
 
@@ -160,3 +165,8 @@ class Item(Entity):
 
         if self.equippable:
             self.equippable.parent = self
+            
+        """self.stackable = stackable
+		
+        if self.stackable:
+            self.stackable.parent = self"""

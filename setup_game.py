@@ -8,12 +8,14 @@ import traceback
 from typing import Optional
 
 import tcod
+from tcod import libtcodpy
 
 import color
 from engine import Engine
 import entity_factories
 from game_map import GameWorld
 import input_handlers
+from components.quantifiable import Quantifiable
 
 
 # Load the background image and remove the alpha channel.
@@ -46,7 +48,7 @@ def new_game() -> Engine:
     engine.update_fov()
 
     engine.message_log.add_message(
-        "Hello and welcome, adventurer, to yet another dungeon!", color.welcome_text
+        "Hello and welcome, adventurer, to yet another dungeon of magic!", color.welcome_text
     )
     
     leather_armor = copy.deepcopy(entity_factories.leather_armor)
@@ -57,9 +59,7 @@ def new_game() -> Engine:
     clip = copy.deepcopy(entity_factories.clip)
     clip.parent = player.inventory
     player.inventory.items.append(clip)
-    player.inventory.items.append(clip)
-    player.inventory.items.append(clip)
-    player.inventory.items.append(clip)
+    player.inventory.items.quantity += 5
     
     return engine
 
@@ -84,14 +84,14 @@ class MainMenu(input_handlers.BaseEventHandler):
             console.height // 2 - 4,
             "Yet Another Dungeon",
             fg=color.menu_title,
-            alignment=tcod.CENTER,
+            alignment=libtcodpy.CENTER,
         )
         console.print(
             console.width // 2,
             console.height - 2,
             "1337_h4k3r",
             fg=color.menu_title,
-            alignment=tcod.CENTER,
+            alignment=libtcodpy.CENTER, 
         )
 
         menu_width = 24
@@ -104,16 +104,16 @@ class MainMenu(input_handlers.BaseEventHandler):
                 text.ljust(menu_width),
                 fg=color.menu_text,
                 bg=color.black,
-                alignment=tcod.CENTER,
-                bg_blend=tcod.BKGND_ALPHA(64),
+                alignment=libtcodpy.CENTER,
+                bg_blend=libtcodpy.BKGND_ALPHA(64),
             )
 
     def ev_keydown(
         self, event: tcod.event.KeyDown
     ) -> Optional[input_handlers.BaseEventHandler]:
-        if event.sym in (tcod.event.K_q, tcod.event.K_ESCAPE):
+        if event.sym in (tcod.event.KeySym.q, tcod.event.KeySym.ESCAPE):
             raise SystemExit()
-        elif event.sym == tcod.event.K_c:
+        elif event.sym == tcod.event.KeySym.c:
             try:
                 return input_handlers.MainGameEventHandler(load_game("savegame.sav"))
             except FileNotFoundError:
@@ -121,7 +121,7 @@ class MainMenu(input_handlers.BaseEventHandler):
             except Exception as exc:
                 traceback.print_exc()  # Print to stderr.
                 return input_handlers.PopupMessage(self, f"Failed to load save:\n{exc}")
-        elif event.sym == tcod.event.K_n:
+        elif event.sym == tcod.event.KeySym.n:
             return input_handlers.MainGameEventHandler(new_game())
 
         return None

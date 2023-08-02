@@ -39,8 +39,12 @@ class Consumable(BaseComponent):
         """Remove the consumed item from its containing inventory."""
         entity = self.parent
         inventory = entity.parent
-        if isinstance(inventory, components.inventory.Inventory):
-            inventory.items.remove(entity)
+        quantity = entity.parent
+        entity.quantity -= 1
+        if quantity == 0:
+        	inventory.items.remove(entity)
+        """if isinstance(inventory, components.inventory.Inventory):
+            inventory.items.remove(entity)"""
 
 
 class ConfusionConsumable(Consumable):

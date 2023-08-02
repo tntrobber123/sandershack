@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from components.ai import BaseAI
     from components.consumable import Consumable
     from components.eq import Equipment
+    from components.quantifiable import Quantifiable
     from components.fighter import Fighter
     from components.inventory import Inventory
     from components.level import Level

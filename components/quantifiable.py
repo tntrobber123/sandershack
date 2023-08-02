@@ -13,17 +13,15 @@ class Quantifiable(BaseComponent):
     parent: Item
     
     def __init__(
-    self,
-    quantity: int = 0,
-    stackable: str = "True"
+        self,
+        quantity: int = 3,
     ):
-    
-    	class SmallKnife(stackable, quantity):
-    		def __init__(self) -> None:
-    		    super().__init__(stackable = False, quantity = 0)
-
-        class Clip(stackable, quantity):
-        	def __init__(self) -> None:
-                super().__init__(stackable = True, quantity = 5)
-    
-    		
+        self.quantity = quantity
+        
+class SmallKnife(Quantifiable):
+    def __init__(self) -> None:
+        super().__init__(quantity = 3)
+        
+class Clip(Quantifiable):
+    def __init__(self) -> None:
+        super().__init__(quantity = 5)

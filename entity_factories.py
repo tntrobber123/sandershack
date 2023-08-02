@@ -53,7 +53,7 @@ grenade = Item(
     color=(255, 0, 0),
     name="grenade",
     consumable=consumable.FireballDamageConsumable(damage=12, radius=3),
-    stackable=quantifiable.GrenadeStackable,
+    #stackable=quantifiable.GrenadeStackable,
     quantity=0,
 )
 health_potion = Item(
@@ -88,8 +88,8 @@ small_knife = Item(
     color=(0, 180, 255),
     name="Small Knife",
     equippable=equippable.SmallKnife(),
-    stackable=quantifiable.SmallKnifeStackable,
-    quantity=quantifiable.SmallKnifeQuantity,
+    stackable=Quantifiable.SmallKnife(),
+    quantity=Quantifiable.SmallKnife.quantity,
 )
 
 knife = Item(

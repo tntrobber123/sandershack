@@ -24,6 +24,6 @@ class Inventory(BaseComponent):
 
         self.engine.message_log.add_message(f"You dropped the {item.name}.")
         
-    """def shoot(self, item: Item) -> None:
+    def shoot(self, item: Item, x, y) -> None:
         self.items.remove(item)
-        item.place(self.parent.x, self.parent.y, self.gamemap)"""
+        item.place(x, y, self.gamemap)

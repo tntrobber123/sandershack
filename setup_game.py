@@ -15,6 +15,7 @@ from engine import Engine
 import entity_factories
 from game_map import GameWorld
 import input_handlers
+from components.quantifiable import Quantifiable
 
 
 # Load the background image and remove the alpha channel.
@@ -58,9 +59,7 @@ def new_game() -> Engine:
     clip = copy.deepcopy(entity_factories.clip)
     clip.parent = player.inventory
     player.inventory.items.append(clip)
-    player.inventory.items.append(clip)
-    player.inventory.items.append(clip)
-    player.inventory.items.append(clip)
+    player.inventory.items.quantity += 5
     
     return engine
 
@@ -92,7 +91,7 @@ class MainMenu(input_handlers.BaseEventHandler):
             console.height - 2,
             "1337_h4k3r",
             fg=color.menu_title,
-            alignment=libtcodpy.CENTER,
+            alignment=libtcodpy.CENTER, 
         )
 
         menu_width = 24

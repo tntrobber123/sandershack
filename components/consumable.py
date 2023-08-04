@@ -9,6 +9,7 @@ import color
 import components.ai
 import components.inventory
 import components.level
+from components import quantifiable
 from components.base_component import BaseComponent
 from exceptions import Impossible
 from input_handlers import (
@@ -39,8 +40,8 @@ class Consumable(BaseComponent):
         """Remove the consumed item from its containing inventory."""
         entity = self.parent
         inventory = entity.parent
-        quantity = entity.parent
-        entity.quantity -= 1
+        quantity = quantifiable
+        quantity.Quantifiable.modify(entity.quantity.quantity, -1)
         if quantity == 0:
         	inventory.items.remove(entity)
         """if isinstance(inventory, components.inventory.Inventory):

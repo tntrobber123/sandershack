@@ -1,10 +1,9 @@
 from components.ai import HostileEnemy
-from components import consumable, equippable
+from components import consumable, equippable, quantifiable
 from components.equipment import Equipment
 from components.fighter import Fighter
 from components.inventory import Inventory
 from components.level import Level
-from components.quantifiable import Quantifiable
 from entity import Actor, Item
 
 
@@ -88,8 +87,7 @@ small_knife = Item(
     color=(0, 180, 255),
     name="Small Knife",
     equippable=equippable.SmallKnife(),
-    stackable=Quantifiable.SmallKnife(),
-    quantity=Quantifiable.SmallKnife.quantity,
+    #quantity=quantifiable.SmallKnife(0),
 )
 
 knife = Item(
@@ -178,6 +176,5 @@ clip = Item(
     color=(212, 175, 55),
     name="Clip",
     consumable=consumable.BulletConsumable(damage=50),
-    stackable=quantifiable.ClipStackable,
-    quantity=quantifiable.ClipQuantity,
+    quantity=quantifiable.Clip()
 )

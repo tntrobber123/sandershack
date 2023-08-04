@@ -41,8 +41,11 @@ class Consumable(BaseComponent):
         entity = self.parent
         inventory = entity.parent
         quantity = quantifiable
-        quantity.Quantifiable.modify(entity.quantity.quantity, -1)
-        if quantity == 0:
+        #quantity.Quantifiable.modify(entity.quantity.quantity, -1)
+        newamount = quantity.Quantifiable.modify(entity.quantity.quantity, -1)
+        entity.quantity.quantity = newamount
+        print(entity.quantity.quantity)
+        if entity.quantity.quantity <= 0:
         	inventory.items.remove(entity)
         """if isinstance(inventory, components.inventory.Inventory):
             inventory.items.remove(entity)"""

@@ -41,7 +41,6 @@ class Consumable(BaseComponent):
         entity = self.parent
         inventory = entity.parent
         quantity = quantifiable
-        #quantity.Quantifiable.modify(entity.quantity.quantity, -1)
         newamount = quantity.Quantifiable.modify(entity.quantity.quantity, -1)
         entity.quantity.quantity = newamount
         print(entity.quantity.quantity)

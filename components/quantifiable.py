@@ -8,9 +8,8 @@ from components.base_component import BaseComponent
 if TYPE_CHECKING:
 	from entity import Actor, Item
 
-
 class Quantifiable(BaseComponent):
-	def __init__(self, quantity: int = 3, change: int = 0):
+	def __init__(self, quantity: int = 0, change: int = 0):
 		self.quantity = quantity
 		self.change = change
 		
@@ -29,7 +28,7 @@ class Clip(Quantifiable):
 		
 class LargeHealthPotion(Quantifiable):
 	def __init__(self):
-		self.quantity = 5
+		self.quantity = 0
 		
 	def modify(self, change):
 		quantity = self.quantity
@@ -38,7 +37,7 @@ class LargeHealthPotion(Quantifiable):
 		
 class HealthPotion(Quantifiable):
 	def __init__(self):
-		self.quantity = 5
+		self.quantity = 0
 		
 	def modify(self, change):
 		quantity = self.quantity
@@ -47,16 +46,7 @@ class HealthPotion(Quantifiable):
 		
 class ConfusionScroll(Quantifiable):
 	def __init__(self):
-		self.quantity = 5
-		
-	def modify(self, change):
-		quantity = self.quantity
-		quantity += change
-		return quantity
-		
-class Clip(Quantifiable):
-	def __init__(self):
-		self.quantity = 5
+		self.quantity = 0
 		
 	def modify(self, change):
 		quantity = self.quantity

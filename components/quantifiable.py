@@ -17,13 +17,40 @@ class Quantifiable(BaseComponent):
 	def modify(quantity, change):
 		quantity += change
 		return quantity
-
-class SmallKnife(Quantifiable):
-	def __init__(self, quantity: int):
-		self.quantity = quantity
-	
+		
+class Clip(Quantifiable):
+	def __init__(self):
+		self.quantity = 5
+		
 	def modify(self, change):
-		quantity = self.parent.quantity
+		quantity = self.quantity
+		quantity += change
+		return quantity
+		
+class LargeHealthPotion(Quantifiable):
+	def __init__(self):
+		self.quantity = 5
+		
+	def modify(self, change):
+		quantity = self.quantity
+		quantity += change
+		return quantity
+		
+class HealthPotion(Quantifiable):
+	def __init__(self):
+		self.quantity = 5
+		
+	def modify(self, change):
+		quantity = self.quantity
+		quantity += change
+		return quantity
+		
+class ConfusionScroll(Quantifiable):
+	def __init__(self):
+		self.quantity = 5
+		
+	def modify(self, change):
+		quantity = self.quantity
 		quantity += change
 		return quantity
 		

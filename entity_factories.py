@@ -88,7 +88,6 @@ small_knife = Item(
     color=(0, 180, 255),
     name="Small Knife",
     equippable=equippable.SmallKnife(),
-    stackable=Quantifiable.SmallKnife(),
     quantity=Quantifiable.SmallKnife.quantity,
 )
 

@@ -30,20 +30,20 @@ max_monsters_by_floor = [
 
 item_chances: Dict[int, List[Tuple[Entity, int]]] = {
     
-    0: [(entity_factories.health_potion, 25), (entity_factories.red_armor_chip, 5),(entity_factories.blue_armor_chip, 5), (entity_factories.small_knife, 15), (entity_factories.knife, 5)],
+    0: [(entity_factories.health_potion, 25), (entity_factories.small_knife, 15), (entity_factories.knife, 5)],
     
-    2: [(entity_factories.green_armor_chip, 5), (entity_factories.confusion_scroll, 10), (entity_factories.blue_armor_chip, 15), (entity_factories.small_knife, 35), (entity_factories.leather_armor, 25), (entity_factories.knife, 35)],
+    2: [(entity_factories.confusion_scroll, 10), (entity_factories.small_knife, 35), (entity_factories.leather_armor, 25), (entity_factories.knife, 35)],
     
-    4: [(entity_factories.health_potion, 35), (entity_factories.large_health_potion, 15), (entity_factories.lightning_shocker, 25), (entity_factories.sword, 35), (entity_factories.leather_armor, 45), (entity_factories.confusion_scroll, 30), (entity_factories.blue_armor_chip, 35), (entity_factories.grenade, 10), (entity_factories.red_armor_chip, 25)],
+    4: [(entity_factories.health_potion, 35), (entity_factories.large_health_potion, 15), (entity_factories.sword, 35), (entity_factories.leather_armor, 45), (entity_factories.confusion_scroll, 30)],
     
-    6: [(entity_factories.green_armor_chip, 15), (entity_factories.red_armor_chip, 35), (entity_factories.grenade, 25), (entity_factories.chain_mail, 35), (entity_factories.blue_armor_chip, 45), (entity_factories.lightning_shocker, 45)],
+    6: [(entity_factories.large_health_potion, 35)],
 }
 
 enemy_chances: Dict[int, List[Tuple[Entity, int]]] = {
     0: [(entity_factories.soldier, 80)],
-    3: [(entity_factories.alien, 15)],
-    5: [(entity_factories.alien, 30)],
-    7: [(entity_factories.alien, 60)],
+    3: [(entity_factories.hazekiller, 15)],
+    5: [(entity_factories.hazekiller, 30)],
+    7: [(entity_factories.hazekiller, 60)],
 }
 
 def get_max_value_for_floor(

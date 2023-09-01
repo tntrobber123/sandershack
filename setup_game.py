@@ -15,7 +15,7 @@ from engine import Engine
 import entity_factories
 from game_map import GameWorld
 import input_handlers
-from components.quantifiable import Quantifiable
+from components import quantifiable
 
 
 # Load the background image and remove the alpha channel.
@@ -28,7 +28,7 @@ def new_game() -> Engine:
     map_height = 43
 
     room_max_size = 10
-    room_min_size = 6
+    room_min_size = 4
     max_rooms = 30
 
     player = copy.deepcopy(entity_factories.player)
@@ -56,10 +56,11 @@ def new_game() -> Engine:
     player.inventory.items.append(leather_armor)
     player.equipment.toggle_equip(leather_armor, add_message=False)
     
-    clip = copy.deepcopy(entity_factories.clip)
-    clip.parent = player.inventory
-    player.inventory.items.append(clip)
-    player.inventory.items.quantity += 5
+    Clip = copy.deepcopy(entity_factories.clip)
+    ClipAmount = quantifiable.Clip()
+    Clip.parent = player.inventory
+    player.inventory.items.append(Clip)
+    ClipAmount.modify(5)
     
     return engine
 
